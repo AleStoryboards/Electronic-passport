@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electronic Passport — Your Passport to the Electronic Music Scene</title>
+<meta name="description" content="Your electronic passport to the world. Discover raves, track DJs, find tickets and join the global community. $24/year.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d100c; --ink-soft:#171b14;
+  --paper:#e7e8dd;
+  --green:#c6ff2e; --green-ink:#1f3d0a;
+  --indigo:#23285f; --muted:#8b8f7f; --stamp:#b23a2e;
+  --display:'Syne',sans-serif; --body:'Archivo',sans-serif; --mono:'Space Mono',monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:var(--body);background:var(--ink);color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+h1,h2,h3{font-family:var(--display);font-weight:800;margin:0;line-height:1.02;letter-spacing:-.01em;}
+p{line-height:1.6;margin:0 0 14px;}
+.mono{font-family:var(--mono);}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--green);margin:0 0 16px;}
+.center{text-align:center;}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(13,16,12,.85);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.1);}
+.topbar .row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:14px;text-transform:uppercase;}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+.navlinks{display:none;gap:26px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+@media(min-width:780px){.navlinks{display:flex;}}
+.navlinks a{color:inherit;text-decoration:none;}
+.navlinks a:hover{color:#fff;}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--display);font-weight:700;font-size:14px;text-transform:uppercase;text-decoration:none;padding:15px 26px;border-radius:6px;border:1.5px solid transparent;cursor:pointer;transition:transform .12s ease, background .15s ease;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--green);color:var(--green-ink);}
+.btn-primary:hover{background:#fff;}
+.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.35);}
+.btn-outline:hover{border-color:#fff;}
+.btn-sm{padding:9px 16px;font-size:10.5px;border-radius:20px;}
+
+.tagpill{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:20px;}
+.tagpill.beta{background:rgba(198,255,46,.14);color:var(--green);border:1px solid rgba(198,255,46,.4);}
+.tagpill.soon{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.18);}
+.tagpill.live{background:rgba(198,255,46,.14);color:var(--green);border:1px solid rgba(198,255,46,.4);}
+
+/* hero */
+.hero{position:relative;padding:130px 0 76px;overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0%, rgba(198,255,46,.12), transparent 45%), radial-gradient(circle at 5% 90%, rgba(35,40,95,.3), transparent 55%);pointer-events:none;}
+.hero .inner{position:relative;text-align:center;max-width:800px;margin:0 auto;}
+.hero .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--green);margin-bottom:22px;}
+.hero h1{font-size:clamp(38px,7vw,72px);text-transform:uppercase;line-height:.98;}
+.hero h1 .g{color:var(--green);}
+.hero .lead{margin:22px auto 0;max-width:52ch;font-size:16px;color:rgba(255,255,255,.68);}
+.price-badge{display:inline-flex;align-items:baseline;gap:6px;margin:30px 0 4px;font-family:var(--display);font-weight:800;}
+.price-badge .num{font-size:52px;color:var(--green);line-height:1;}
+.price-badge .per{font-family:var(--mono);font-size:13px;text-transform:uppercase;color:rgba(255,255,255,.55);letter-spacing:.06em;}
+.hero .ctarow{margin-top:22px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+.hero .micro{margin-top:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:rgba(255,255,255,.4);}
+
+/* sections */
+section{padding:70px 0;}
+.section-tight{padding:50px 0;}
+
+/* what is EP */
+.whatis{max-width:620px;margin:0 auto;text-align:center;}
+.whatis h2{font-size:clamp(26px,4.5vw,38px);text-transform:uppercase;}
+.whatis p{margin-top:16px;color:rgba(255,255,255,.62);font-size:15px;}
+
+/* feature cards */
+.featgrid{display:grid;gap:14px;margin-top:40px;}
+@media(min-width:640px){.featgrid{grid-template-columns:1fr 1fr;}}
+@media(min-width:980px){.featgrid{grid-template-columns:repeat(4,1fr);}}
+.fcard{border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:22px 20px;background:linear-gradient(160deg, rgba(255,255,255,.03), transparent);transition:border-color .2s ease;}
+.fcard:hover{border-color:rgba(198,255,46,.4);}
+.fcard .top{display:flex;justify-content:space-between;align-items:flex-start;}
+.fcard .ic{font-size:24px;}
+.fcard h3{margin-top:14px;font-size:15px;text-transform:uppercase;font-family:var(--display);font-weight:700;}
+.fcard .hook{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-top:6px;}
+.fcard p{margin-top:8px;font-size:12.5px;color:rgba(255,255,255,.55);}
+
+/* passport visual */
+.passport-section{background:radial-gradient(circle at 15% 20%, rgba(198,255,46,.08), transparent 50%);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);}
+.passport-section .inner{display:grid;gap:44px;align-items:center;}
+@media(min-width:900px){.passport-section .inner{grid-template-columns:1fr 1fr;}}
+.member-card{position:relative;max-width:400px;margin:0 auto;border:1.5px solid rgba(198,255,46,.55);border-radius:12px;padding:28px;background:linear-gradient(160deg,var(--ink-soft),#000);}
+.member-card .corner{position:absolute;width:14px;height:14px;border:2px solid var(--green);}
+.member-card .c1{top:-2px;left:-2px;border-right:0;border-bottom:0;} .member-card .c2{top:-2px;right:-2px;border-left:0;border-bottom:0;}
+.member-card .c3{bottom:-2px;left:-2px;border-right:0;border-top:0;} .member-card .c4{bottom:-2px;right:-2px;border-left:0;border-top:0;}
+.member-card .toprow{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:24px;}
+.member-card .idrow{display:flex;align-items:center;gap:16px;}
+.ring{width:78px;height:78px;flex:0 0 auto;}
+.member-card .name{font-family:var(--display);font-weight:800;font-size:19px;text-transform:uppercase;line-height:1.1;}
+.member-card .id{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.5);margin-top:4px;}
+.member-card .flags{margin-top:20px;font-size:22px;letter-spacing:6px;}
+.member-card .flaglabel{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px;}
+.mrz{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;background:rgba(0,0,0,.4);color:var(--green);padding:10px 12px;border-radius:3px;line-height:1.85;margin-top:20px;white-space:nowrap;overflow:hidden;}
+.mrz .f{color:rgba(198,255,46,.35);}
+.passport-copy h2{font-size:clamp(26px,4.5vw,38px);text-transform:uppercase;}
+.passport-copy p{margin-top:16px;color:rgba(255,255,255,.62);font-size:14.5px;max-width:46ch;}
+
+/* proof */
+.proof{border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:36px 0;text-align:center;}
+.proof .num{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,44px);color:var(--green);line-height:1;}
+.proof .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:8px;}
+
+/* creator */
+.creator{text-align:center;}
+.creator h2{font-size:clamp(26px,4.5vw,40px);text-transform:uppercase;max-width:16ch;margin:0 auto;}
+.creator p{margin:16px auto 0;max-width:50ch;color:rgba(255,255,255,.6);font-size:14.5px;}
+
+/* founding members */
+.founding{border-top:1px solid rgba(255,255,255,.08);}
+.founding .inner{max-width:640px;margin:0 auto;text-align:center;}
+.founding h2{font-size:clamp(26px,4.5vw,38px);text-transform:uppercase;}
+.founding p{margin-top:16px;color:rgba(255,255,255,.62);font-size:14.5px;}
+
+/* pricing / passport CTA */
+.pricing{position:relative;}
+.pricing .head{text-align:center;}
+.pricing .head h2{font-size:clamp(30px,5.5vw,50px);text-transform:uppercase;margin-top:8px;}
+.stampline{display:flex;justify-content:center;margin:14px 0 4px;}
+.stamp{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);border:2.5px solid var(--green);border-radius:5px;padding:7px 14px;transform:rotate(-6deg);}
+
+.pricecard{max-width:660px;margin:36px auto 0;border-radius:14px;overflow:hidden;display:grid;box-shadow:0 40px 90px rgba(0,0,0,.55);}
+@media(min-width:640px){.pricecard{grid-template-columns:1fr 230px;}}
+.pc-main{background:var(--paper);color:var(--ink);padding:34px 30px;}
+.pc-main .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--indigo);}
+.pc-main h3{font-size:23px;text-transform:uppercase;margin-top:4px;}
+.pc-list{margin:20px 0 0;padding:0;list-style:none;}
+.pc-list li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;padding:6px 0;color:#2a2e22;}
+.pc-list li::before{content:"✓";color:var(--green-ink);font-weight:700;}
+.pc-cta{display:block;margin-top:22px;width:100%;text-align:center;background:var(--ink);color:var(--green);padding:17px;border-radius:6px;font-family:var(--display);font-weight:700;font-size:14px;text-transform:uppercase;text-decoration:none;}
+.pc-cta:hover{background:#000;}
+.pc-note{text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:rgba(13,16,12,.45);margin-top:10px;}
+.pc-stub{background:var(--ink);color:#fff;padding:26px 22px;display:flex;flex-direction:column;justify-content:space-between;border-top:2px dashed rgba(255,255,255,.2);}
+@media(min-width:640px){.pc-stub{border-top:0;border-left:2px dashed rgba(255,255,255,.2);}}
+.pc-stub .k{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.pc-stub .v{font-family:var(--display);font-weight:800;font-size:14px;text-transform:uppercase;margin:2px 0 12px;}
+.pc-stub .price{font-family:var(--display);font-weight:800;font-size:46px;color:var(--green);line-height:1;}
+.pc-stub .price sup{font-size:14px;}
+.pc-stub .barcode{height:26px;margin-top:14px;opacity:.75;background:repeating-linear-gradient(90deg,var(--green) 0 2px,transparent 2px 4px,var(--green) 4px 5px,transparent 5px 9px);}
+
+/* faq */
+.faq{max-width:720px;margin:0 auto;}
+.faq-item{border-top:1px solid rgba(255,255,255,.12);}
+.faq-item:last-child{border-bottom:1px solid rgba(255,255,255,.12);}
+.faq-q{width:100%;background:none;border:0;color:#fff;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;font-family:var(--display);font-weight:700;font-size:15px;text-transform:uppercase;}
+.faq-q .plus{font-family:var(--mono);font-size:18px;color:var(--green);transition:transform .2s ease;flex:0 0 auto;}
+.faq-item.open .faq-q .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-item.open .faq-a{max-height:220px;}
+.faq-a p{padding:0 0 20px;font-size:13.5px;color:rgba(255,255,255,.6);max-width:60ch;}
+
+/* final cta */
+.finalcta{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.finalcta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 30%, rgba(198,255,46,.1), transparent 55%);pointer-events:none;}
+.finalcta .inner{position:relative;}
+.finalcta h2{font-size:clamp(30px,6.5vw,54px);text-transform:uppercase;max-width:16ch;}
+.finalcta p{margin-top:14px;color:rgba(255,255,255,.6);max-width:48ch;margin-left:auto;margin-right:auto;}
+.finalcta .price-badge{margin:22px 0 6px;}
+.finalcta .btn{margin-top:14px;padding:18px 32px;}
+
+/* footer */
+footer{border-top:1px solid rgba(255,255,255,.1);padding:36px 0 26px;}
+.fgrid{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:16px;}
+.fbrand{font-family:var(--display);font-weight:800;font-size:14px;text-transform:uppercase;}
+.flinks{display:flex;flex-wrap:wrap;gap:22px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.flinks a{color:inherit;text-decoration:none;}
+.flinks a:hover{color:#fff;}
+.copyright{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.3);}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease;}
+.reveal.show{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap row">
+    <div class="brand"><span class="dot"></span>Electronic Passport</div>
+    <div class="navlinks">
+      <a href="#includes">Passport</a>
+      <a href="#community">Community</a>
+      <a href="#creator">Creator</a>
+      <a href="#pricing">Join</a>
+    </div>
+    <a href="https://buy.stripe.com/fZufZg382b4te0q3pk2Ry0t" class="btn btn-primary btn-sm">Get My Passport 🌎</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap inner">
+    <p class="kicker">Electronic Passport</p>
+    <h1>Your electronic passport <span class="g">to the world.</span></h1>
+    <p class="lead">Discover better raves. Find your people. Track your favorite DJs. Find tickets. Explore the electronic music scene wherever you go.</p>
+    <div class="price-badge"><span class="num">$24</span><span class="per">/ year</span></div>
+    <div class="ctarow">
+      <a href="https://buy.stripe.com/fZufZg382b4te0q3pk2Ry0t" class="btn btn-primary">Get Your Electronic Passport →</a>
+      <a href="#includes" class="btn btn-outline">Explore EP</a>
+    </div>
+    <p class="micro">One year. One passport. A world of electronic music.</p>
+  </div>
+</section>
+
+<!-- WHAT IS EP -->
+<section class="section-tight">
+  <div class="wrap whatis">
+    <p class="eyebrow center" style="justify-content:center;">What Is EP?</p>
+    <h2>The electronic music scene is everywhere.</h2>
+    <p>Electronic Passport connects the people, parties, artists and places that make electronic music culture what it is. Discover where to go, who's playing, who's going, where to find tickets, and what's happening next.</p>
+  </div>
+</section>
+
+<!-- YOUR PASSPORT INCLUDES -->
+<section id="includes">
+  <div class="wrap">
+    <p class="eyebrow center" style="justify-content:center;">Your Passport Includes</p>
+    <h2 class="center" style="font-size:clamp(26px,4.5vw,40px);text-transform:uppercase;">Everything you need to find your scene.</h2>
+
+    <div class="featgrid">
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">🎟️</span><span class="tagpill beta">Beta</span></div>
+        <h3>Ticket Exchange</h3>
+        <p class="hook">Find the ticket. Find the party.</p>
+        <p>Buy and sell tickets within the EP community. Right now it's members posting directly in the group, a full verified exchange is what we're building toward.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">🎧</span><span class="tagpill soon">Coming Soon</span></div>
+        <h3>DJ Radar</h3>
+        <p class="hook">Know where your favorite DJs are playing.</p>
+        <p>Follow international artists and discover their upcoming dates around the world, without checking ten Instagram profiles.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">🔥</span><span class="tagpill live">Member Feature</span></div>
+        <h3>Rave Radar</h3>
+        <p class="hook">Stop searching. Start raving.</p>
+        <p>Curated events and parties selected by EP, shared in the community as they're announced, not a giant list of everything.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">👀</span><span class="tagpill live">Member Feature</span></div>
+        <h3>Hidden Gems</h3>
+        <p class="hook">The parties you might otherwise miss.</p>
+        <p>Underground events, afters, pop-ups and emerging collectives, the picks only someone actually in the scene would know.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">🗺️</span><span class="tagpill live">Member Feature</span></div>
+        <h3>City Guides</h3>
+        <p class="hook">Arrive somewhere new. Know where to go.</p>
+        <p>The Brazil Rave Guide covers Rio, São Paulo and Búzios today: how the scene works, venues, and local recommendations. More countries coming.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">🌎</span><span class="tagpill live">Member Feature</span></div>
+        <h3>Global Communities</h3>
+        <p class="hook">Don't rave alone.</p>
+        <p>Electronic Passport Brazil is live today, 130+ members. Colombia, Mexico, Argentina and the US communities are next.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">📹</span><span class="tagpill soon">Coming Soon</span></div>
+        <h3>EP Creator</h3>
+        <p class="hook">You film it. We amplify it.</p>
+        <p>Submit your rave footage and get the chance to be featured across Electronic Passport.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="top"><span class="ic">🎶</span><span class="tagpill soon">Coming Soon</span></div>
+        <h3>Music Discovery</h3>
+        <p class="hook">Find your next obsession.</p>
+        <p>Tracks, DJs, playlists and sets discovered by the EP community. Sound of the week, curated.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASSPORT VISUAL -->
+<section class="passport-section">
+  <div class="wrap inner">
+    <div class="member-card reveal">
+      <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+      <div class="toprow"><span>Electronic Passport</span><span>Member</span></div>
+      <div class="idrow">
+        <svg class="ring" viewBox="0 0 200 200">
+          <defs><path id="rm" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+          <circle cx="100" cy="100" r="92" fill="none" stroke="#c6ff2e" stroke-width="1.5"/>
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#c6ff2e" stroke-width="0.8" opacity=".6"/>
+          <text fill="#c6ff2e" font-family="Space Mono" font-size="10.5" letter-spacing="2"><textPath href="#rm" startOffset="2%">ELECTRONIC PASSPORT ★ MEMBER ★ FIND YOUR SCENE ★ </textPath></text>
+          <text x="100" y="112" text-anchor="middle" fill="#c6ff2e" font-family="Syne" font-weight="800" font-size="40">EP</text>
+        </svg>
+        <div>
+          <div class="name">The Bearer</div>
+          <div class="id">EP-000001 · Global</div>
+        </div>
+      </div>
+      <div class="flags">🇧🇷 🇨🇴 🇲🇽 🇺🇸</div>
+      <div class="flaglabel">Where the passport goes next</div>
+      <div class="mrz">P&lt;EPGLOBAL&lt;&lt;ELECTRONIC&lt;&lt;PASSPORT<span class="f">&lt;&lt;</span><br>EP000001&lt;&lt;24USD&lt;&lt;ANNUAL<span class="f">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></div>
+    </div>
+    <div class="passport-copy">
+      <p class="eyebrow">One Passport</p>
+      <h2>A world of electronic music.</h2>
+      <p>This isn't a subscription to content. It's your passport into the scene, one identity that travels with you from Rio to wherever the sound takes you next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="wrap">
+    <div class="num">130+</div>
+    <div class="cap">Ravers already in Electronic Passport Brazil</div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" class="section-tight">
+  <div class="wrap center" style="max-width:640px;margin:0 auto;text-align:center;">
+    <p class="eyebrow" style="justify-content:center;">Your People Are Already Out There</p>
+    <h2 style="font-size:clamp(26px,4.5vw,38px);text-transform:uppercase;">Don't rave alone.</h2>
+    <p style="margin-top:16px;color:rgba(255,255,255,.62);font-size:14.5px;">Connect with electronic music lovers around the world. Join country communities, share events, exchange tickets and find people to rave with. Electronic Passport Brazil is live today, more countries follow as EP grows.</p>
+  </div>
+</section>
+
+<!-- CREATOR -->
+<section id="creator" class="creator">
+  <div class="wrap">
+    <p class="eyebrow center" style="justify-content:center;">EP Creator <span class="tagpill soon" style="margin-left:8px;">Coming Soon</span></p>
+    <h2>Your rave. Your footage. Our platform.</h2>
+    <p>Capture your best moments. Submit them to EP. The best clips can be featured across Electronic Passport.</p>
+    <a href="https://instagram.com/electronicpassport" class="btn btn-outline" style="margin-top:22px;">Submit via Instagram DM</a>
+  </div>
+</section>
+
+<!-- FOUNDING MEMBERS -->
+<section class="founding">
+  <div class="wrap inner">
+    <p class="eyebrow center" style="justify-content:center;">Founding Members</p>
+    <h2>Get your passport from day one.</h2>
+    <p>Electronic Passport is being built with the community. Join as a founding member and get access to the EP ecosystem as new features, communities and member benefits continue to launch, at this price, for as long as you stay a member.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow center" style="justify-content:center;">Cleared For Entry</p>
+      <div class="stampline"><span class="stamp">Cleared for entry</span></div>
+      <h2>Get your Electronic Passport.</h2>
+      <p style="max-width:44ch;margin:14px auto 0;color:rgba(255,255,255,.6);">One year inside the electronic music scene.</p>
+    </div>
+
+    <div class="pricecard">
+      <div class="pc-main">
+        <p class="lbl">Document</p>
+        <h3>Electronic Passport</h3>
+        <ul class="pc-list">
+          <li>Brazil Rave Guide (Rio, São Paulo, Búzios)</li>
+          <li>Private community, 130+ members</li>
+          <li>Ticket exchange (beta) &amp; discount codes</li>
+          <li>Weekly rave radar &amp; hidden gems</li>
+          <li>Founding member access as EP expands</li>
+        </ul>
+        <a href="https://buy.stripe.com/fZufZg382b4te0q3pk2Ry0t" class="pc-cta">Get My Passport 🌎</a>
+        <p class="pc-note">Billed annually · cancel anytime</p>
+      </div>
+      <div class="pc-stub">
+        <div>
+          <p class="k">Access</p><p class="v">All Included</p>
+          <p class="k">Billing</p><p class="v">Annual</p>
+        </div>
+        <div>
+          <div class="price">$24<sup>/yr</sup></div>
+          <div class="barcode"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow center" style="justify-content:center;">Before You Join</p>
+    <h2 class="center" style="font-size:clamp(24px,4vw,34px);text-transform:uppercase;margin-bottom:24px;">Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">What do I get right now?<span class="plus">+</span></button>
+        <div class="faq-a"><p>The Brazil Rave Guide (Rio, São Paulo, Búzios), the private EP Brazil community (130+ members), weekly party and ticket updates, and beta access to the ticket exchange. Everything marked "Coming Soon" isn't live yet, but founding members get it first.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Why annual instead of monthly?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Electronic Passport is a passport, not a content subscription. $24 gets you a full year inside the scene, one payment, nothing to remember to cancel every month.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is the ticket exchange a real marketplace?<span class="plus">+</span></button>
+        <div class="faq-a"><p>It's in beta: members post what they need or what they've got spare directly in the community. A fully verified exchange with payment protection is what we're building next.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will EP expand to other countries?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, that's the plan. Colombia, Mexico, Argentina and the US are next. Founding members get access first as each one launches.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I cancel?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, anytime. It's an annual membership, not a lock-in contract.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="finalcta">
+  <div class="wrap inner">
+    <h2>Wherever you go, the scene goes with you.</h2>
+    <p>Get your Electronic Passport.</p>
+    <div class="price-badge"><span class="num">$24</span><span class="per">/ year</span></div>
+    <div><a href="https://buy.stripe.com/fZufZg382b4te0q3pk2Ry0t" class="btn btn-primary">Get My Passport 🌎</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <span class="fbrand">Electronic Passport</span>
+      <div class="flinks">
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Electronic Passport. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(function(item){
+  item.querySelector('.faq-q').addEventListener('click', function(){
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(o){ o.classList.remove('open'); });
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+var els = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  els.forEach(function(el){ io.observe(el); });
+} else {
+  els.forEach(function(el){ el.classList.add('show'); });
+}
+</script>
+</body>
+</html>
